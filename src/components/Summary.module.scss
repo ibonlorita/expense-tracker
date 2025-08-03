@@ -1,0 +1,211 @@
+// src/components/Summary/Summary.module.scss
+@import '../../styles/variables';
+
+.container {
+  background: white;
+  border-radius: $radius-xl;
+  padding: $space-6;
+  box-shadow: $shadow-lg;
+  margin-bottom: $space-6;
+}
+
+.title {
+  font-size: $font-2xl;
+  font-weight: 700;
+  color: $gray-800;
+  margin: 0 0 $space-6 0;
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: $space-4;
+  margin-bottom: $space-6;
+}
+
+.card {
+  background: $gray-50;
+  border-radius: $radius-lg;
+  padding: $space-5;
+  display: flex;
+  align-items: center;
+  gap: $space-4;
+  transition: all 0.2s ease;
+  border: 2px solid transparent;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: $shadow-md;
+  }
+
+  &.income {
+    background: linear-gradient(135deg, rgba($success-color, 0.05), rgba($success-color, 0.1));
+    border-color: rgba($success-color, 0.2);
+
+    &:hover {
+      border-color: $success-color;
+    }
+  }
+
+  &.expense {
+    background: linear-gradient(135deg, rgba($danger-color, 0.05), rgba($danger-color, 0.1));
+    border-color: rgba($danger-color, 0.2);
+
+    &:hover {
+      border-color: $danger-color;
+    }
+  }
+
+  &.balance {
+    &.positive {
+      background: linear-gradient(135deg, rgba($primary-color, 0.05), rgba($primary-color, 0.1));
+      border-color: rgba($primary-color, 0.2);
+
+      &:hover {
+        border-color: $primary-color;
+      }
+    }
+
+    &.negative {
+      background: linear-gradient(135deg, rgba($warning-color, 0.05), rgba($warning-color, 0.1));
+      border-color: rgba($warning-color, 0.2);
+
+      &:hover {
+        border-color: $warning-color;
+      }
+    }
+  }
+
+  &.count {
+    background: linear-gradient(135deg, rgba($info-color, 0.05), rgba($info-color, 0.1));
+    border-color: rgba($info-color, 0.2);
+
+    &:hover {
+      border-color: $info-color;
+    }
+  }
+}
+
+.cardIcon {
+  font-size: 2.5rem;
+  flex-shrink: 0;
+}
+
+.cardContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.cardTitle {
+  font-size: $font-sm;
+  font-weight: 600;
+  color: $gray-600;
+  margin: 0 0 $space-1 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.cardAmount {
+  font-size: $font-xl;
+  font-weight: 700;
+  color: $gray-800;
+  margin: 0;
+  word-break: break-all;
+}
+
+.balanceAlert {
+  padding: $space-4;
+  border-radius: $radius-lg;
+  font-weight: 500;
+  text-align: center;
+
+  &.positive {
+    background: rgba($success-color, 0.1);
+    color: darken($success-color, 20%);
+    border: 2px solid rgba($success-color, 0.2);
+  }
+
+  &.negative {
+    background: rgba($warning-color, 0.1);
+    color: darken($warning-color, 20%);
+    border: 2px solid rgba($warning-color, 0.2);
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+// 載入狀態
+.loading {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: $space-4;
+}
+
+.skeleton {
+  height: 100px;
+  background: linear-gradient(90deg, $gray-200 25%, $gray-100 50%, $gray-200 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: $radius-lg;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+// 手機版優化
+@media (max-width: $mobile) {
+  .container {
+    padding: $space-4;
+    border-radius: $radius-lg;
+  }
+
+  .title {
+    font-size: $font-xl;
+  }
+
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    gap: $space-3;
+  }
+
+  .card {
+    padding: $space-3;
+    flex-direction: column;
+    text-align: center;
+    gap: $space-2;
+  }
+
+  .cardIcon {
+    font-size: 2rem;
+  }
+
+  .cardAmount {
+    font-size: $font-lg;
+  }
+
+  .balanceAlert {
+    padding: $space-3;
+    font-size: $font-sm;
+  }
+}
+
+// 極小螢幕優化
+@media (max-width: 480px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    flex-direction: row;
+    text-align: left;
+  }
+}
