@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useExpenses } from './hooks/useExpenses';
-import './styles/globals.scss';
 import styles from './App.module.scss';
 import { ExpenseFormData } from './types';
 import { Summary, ExpenseForm, ExpenseList } from './components';
